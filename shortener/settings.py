@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import environ
-from django.conf.global_settings import INSTALLED_APPS
 
 env = environ.Env()
 environ.Env.read_env()
