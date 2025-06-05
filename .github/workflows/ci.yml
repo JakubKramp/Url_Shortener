@@ -43,6 +43,9 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
 
+      - name: create .env file
+        run: cp env.example ./shortener/
+
       - name: Build the Stack
         run: docker compose  build api
 
