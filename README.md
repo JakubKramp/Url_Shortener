@@ -22,6 +22,10 @@ Both approaches have their pros and cons. I have prepared both solutions, you ca
 
 Tu run tests use `docker compose exec api pytest .` command
 
+### Notes
+I was going to make the original_url unique, but after playing around with tinyurl,
+and realising it offers user provided short urls i decided against it.
+
 ### Notes about possible improvements
 I've decided not to implement any of the things I've described below, as the description of the task incentivized simplicity, but i think the app can be improved by including:
 - Simple authorization

@@ -1,3 +1,4 @@
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 from shortener.models import TimeStampedModel
@@ -9,8 +10,14 @@ class Url(TimeStampedModel):
     In the future consider removing urls created by anonymous users after certain amount of time
     """
 
-    original_url = models.URLField(blank=False, null=False, unique=True)
-    short_url = models.SlugField(blank=True, unique=True)
+    original_url = models.URLField(blank=False, null=False)
+    short_url = models.SlugField(
+        blank=True,
+        unique=True,
+        validators=[
+            MinLengthValidator(5, "the field must contain at least 50 characters")
+        ],
+    )
 
     def save(self, *args, **kwargs):
         if not self.short_url:
