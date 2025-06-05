@@ -1,0 +1,22 @@
+volumes:
+  pgdata:
+
+services:
+  api:
+    build:
+      context: .
+    depends_on:
+      - postgres
+    volumes:
+      - .:/code
+    ports:
+      - '8000:8000'
+
+  postgres:
+    image: 'postgres:14.1'
+    env_file:
+      - shortener/.env
+    ports:
+          - "5431:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
