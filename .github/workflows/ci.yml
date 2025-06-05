@@ -46,6 +46,9 @@ jobs:
       - name: create .env file
         run: cp env.example ./shortener/
 
+      - name: List files in shortener folder
+        run: ls -la ./shortener
+
       - name: Build the Stack
         run: docker compose  build api
 
