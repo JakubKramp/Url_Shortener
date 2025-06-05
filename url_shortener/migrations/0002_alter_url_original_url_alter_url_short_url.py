@@ -5,20 +5,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('url_shortener', '0001_initial'),
+        ("url_shortener", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='url',
-            name='original_url',
+            model_name="url",
+            name="original_url",
             field=models.URLField(),
         ),
         migrations.AlterField(
-            model_name='url',
-            name='short_url',
-            field=models.SlugField(blank=True, unique=True, validators=[django.core.validators.MinLengthValidator(5, 'the field must contain at least 50 characters')]),
+            model_name="url",
+            name="short_url",
+            field=models.SlugField(
+                blank=True,
+                unique=True,
+                validators=[
+                    django.core.validators.MinLengthValidator(
+                        5, "the field must contain at least 50 characters"
+                    )
+                ],
+            ),
         ),
     ]

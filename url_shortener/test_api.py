@@ -32,27 +32,31 @@ class UrlShortenerTestCase(TestCase):
 
     def test_create_custom_url(self):
         url = "https://pl.wikipedia.org/wiki/Real_Madryt"
-        response = self.client.post("", data={"original_url": url, "short_url": 'short'})
-
+        response = self.client.post(
+            "", data={"original_url": url, "short_url": "short"}
+        )
 
         self.assertEqual(1, Url.objects.count())
         self.assertEqual(response.status_code, 201)
 
     def test_create_custom_url_too_short(self):
         url = "hts://pl.wikipedia.org/wiki/Real_Madryt"
-        response = self.client.post("", data={"original_url": url, "short_url": 'shor'})
+        response = self.client.post("", data={"original_url": url, "short_url": "shor"})
 
         self.assertEqual(0, Url.objects.count())
         self.assertEqual(response.status_code, 400)
 
     def test_create_custom_url_exists(self):
-        url_obj = Url.objects.create(original_url='https://example.com', short_url='short')
+        url_obj = Url.objects.create(
+            original_url="https://example.com", short_url="short"
+        )
         url = "hts://pl.wikipedia.org/wiki/Real_Madryt"
-        response = self.client.post("", data={"original_url": url, "short_url": 'short'})
+        response = self.client.post(
+            "", data={"original_url": url, "short_url": "short"}
+        )
 
         self.assertEqual(1, Url.objects.count())
         self.assertEqual(response.status_code, 400)
-
 
     def test_list_urls(self):
         url = "https://pl.wikipedia.org/wiki/Real_Madryt"
